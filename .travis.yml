@@ -3,3 +3,5 @@ language: node_js
 
 # Switch Sudo off to use Travi's new and fast Docker infrastructure
 sudo: false
+
+before_install: npm install -g grunt-cli
