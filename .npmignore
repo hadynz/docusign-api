@@ -1,0 +1,11 @@
+# Folders
+test
+
+# Config Files
+.editorconfig
+.gitattributes
+.gitignore
+.jshint*
+
+# IDE
+.idea

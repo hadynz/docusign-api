@@ -1,0 +1,5 @@
+# Set Travis-CI build language to JavaScript (with NodeJS)
+language: node_js
+
+# Switch Sudo off to use Travi's new and fast Docker infrastructure
+sudo: false
