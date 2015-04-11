@@ -1,0 +1,29 @@
+{
+  "name": "docusign-api",
+  "version": "0.0.1",
+  "description": "DocuSign API for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hadynz/docusign-api.git"
+  },
+  "keywords": [
+    "docusign",
+    "api"
+  ],
+  "author": "Hady Osman <hady.osman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hadynz/docusign-api/issues"
+  },
+  "homepage": "https://github.com/hadynz/docusign-api",
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-mocha-test": "^0.12.7"
+  }
+}

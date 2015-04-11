@@ -14,6 +14,6 @@ var endpoint = {
     return this.createEnvelopeFromTemplate + '/' + envelopeId + '/recipients?include_tabs=true';
   }
 
-}
+};
 
 module.exports = endpoint;

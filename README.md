@@ -1,5 +1,7 @@
 # docusign-api
 
+[![Build Status](https://travis-ci.org/hadynz/docusign-api.svg)](https://travis-ci.org/hadynz/docusign-api)
+
 DocuSign API for NodeJS.
 
 ## Installation
