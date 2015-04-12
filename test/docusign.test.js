@@ -1,14 +1,16 @@
 'use strict';
 
 var assert = require('chai').assert;
-//var supertest = require('supertest');
-//var api = supertest('http://localhost:5000');
-
 var DocuSign = require('../src/DocuSign');
+var config = {
+  email: process.env.email,
+  password: process.env.password,
+  integratorKey: process.env.key
+};
 
 describe('DocuSign', function () {
 
-  describe('#construct()', function () {
+  describe('ctor', function () {
 
     it('should be an object', function () {
       var config = {email: '#email', password: '#password', integratorKey: '#key'};
@@ -29,6 +31,22 @@ describe('DocuSign', function () {
       assert.throw(function () {
         new DocuSign(config);
       }, Error);
+    });
+
+  });
+
+  describe('load', function () {
+
+    it('returns an expected response object', function (done) {
+      var docuSign = new DocuSign(config);
+
+      docuSign
+        .login()
+        .then(function (response) {
+          assert.equal(response.baseUrl, 'https://demo.docusign.net/restapi/v2/accounts/992167');
+          assert.equal(response.accountId, '992167');
+          done();
+        });
     });
 
   });
