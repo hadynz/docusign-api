@@ -1,12 +1,8 @@
 'use strict';
 
 var assert = require('chai').assert;
+var config = require('./lib/config');
 var DocuSign = require('../src/DocuSign');
-var config = {
-  email: process.env.email,
-  password: process.env.password,
-  integratorKey: process.env.key
-};
 
 describe('DocuSign', function () {
 
