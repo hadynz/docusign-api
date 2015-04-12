@@ -28,13 +28,6 @@ function initializeRequest(url, method, body, config) {
   return options;
 }
 
-function parseResponseBody(error, response) {
-  if (response.statusCode !== 200 && response.statusCode !== 201) { // success statuses
-    return false;
-  }
-  return true;
-}
-
 function Helper(config) {
   this.config = config;
 }
@@ -43,14 +36,12 @@ Helper.prototype.get = function(url, body, method) {
   var self = this;
 
   return new Promise(function (fulfill, reject) {
-    // set request url, method, body, and headers
-    var options = initializeRequest(url, method, body, self.config);
+    var requestParams = initializeRequest(url, method, body, self.config);
 
-    // send the request...
-    request(options, function (error, response, body) {
+    request(requestParams, function (error, response, body) {
       var parsedBody = JSON.parse(body);
 
-      if (!parseResponseBody(error, response)) {
+      if (response.statusCode !== 200 && response.statusCode !== 201) {
         reject(parsedBody);
         return;
       }
