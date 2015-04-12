@@ -27,6 +27,7 @@
     "grunt-mocha-test": "^0.12.7"
   },
   "dependencies": {
+    "promise": "^6.1.0",
     "request": "^2.55.0",
     "validate": "^2.1.6"
   }

@@ -2,12 +2,13 @@
 
 var request = require('request');
 var schema = require('./schema');
+var Promise = require('promise');
 //var config   = require('./config');
 //var endpoint = require('./endpoints');
 
 function DocuSign(config) {
   if (schema.config.validate(config).length > 0) {
-    throw new Error('DocuSign config is invalid. Please check documentation.');
+    throw new Error('DocuSign config is invalid. You must provide an email, password and an integrator key.');
   }
 
   this.config = config;
@@ -39,34 +40,33 @@ function initializeRequest(url, method, body, config) {
   return options;
 }
 
-function parseResponseBody(error, response, body) {
-  console.log('\r\nAPI Call Result: \r\n', JSON.parse(body));
-
+function parseResponseBody(error, response) {
   if (response.statusCode !== 200 && response.statusCode !== 201) { // success statuses
-    console.log('Error calling webservice, status is: ', response.statusCode);
-    console.log('\r\n', error);
     return false;
   }
-
   return true;
 }
 
-DocuSign.prototype.Login = function () {
+DocuSign.prototype.login = function () {
+  var self = this;
+
   return new Promise(function (fulfill, reject) {
     var url = 'https://demo.docusign.net/restapi/v2/login_information';
     var body = ''; // no request body for login api call
 
     // set request url, method, body, and headers
-    var options = initializeRequest(url, 'GET', body, this.config);
+    var options = initializeRequest(url, 'GET', body, self.config);
 
     // send the request...
     request(options, function (error, response, body) {
-      if (!parseResponseBody(error, response, body)) {
-        reject(error);
+      var parsedBody = JSON.parse(body);
+
+      if (!parseResponseBody(error, response)) {
+        reject(parsedBody);
         return;
       }
 
-      fulfill(JSON.parse(body));
+      fulfill(parsedBody);
     });
 
   });
