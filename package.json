@@ -25,5 +25,9 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-mocha-test": "^0.12.7"
+  },
+  "dependencies": {
+    "request": "^2.55.0",
+    "validate": "^2.1.6"
   }
 }
