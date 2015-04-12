@@ -35,25 +35,29 @@ function parseResponseBody(error, response) {
   return true;
 }
 
-module.exports = {
+function Helper(config) {
+  this.config = config;
+}
 
-  get: function (url, body, config) {
-    return new Promise(function (fulfill, reject) {
-      // set request url, method, body, and headers
-      var options = initializeRequest(url, 'GET', body, config);
+Helper.prototype.get = function(url, body, method) {
+  var self = this;
 
-      // send the request...
-      request(options, function (error, response, body) {
-        var parsedBody = JSON.parse(body);
+  return new Promise(function (fulfill, reject) {
+    // set request url, method, body, and headers
+    var options = initializeRequest(url, method, body, self.config);
 
-        if (!parseResponseBody(error, response)) {
-          reject(parsedBody);
-          return;
-        }
+    // send the request...
+    request(options, function (error, response, body) {
+      var parsedBody = JSON.parse(body);
 
-        fulfill(parsedBody);
-      });
+      if (!parseResponseBody(error, response)) {
+        reject(parsedBody);
+        return;
+      }
+
+      fulfill(parsedBody);
     });
-  }
-
+  });
 };
+
+module.exports = Helper;
