@@ -22,7 +22,7 @@ DocuSign.prototype.login = function () {
 DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, recipientName, templateRoleName) {
   var self = this;
   var body = {
-    'emailSubject': 'DocuSign API call - Embedded Sending Example',
+    'emailSubject': 'docusign-api Unit Test',
     'templateId': templateId,
     'templateRoles': [
       {
