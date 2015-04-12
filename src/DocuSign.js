@@ -1,7 +1,7 @@
 'use strict';
 
 var schema = require('./schema');
-var Helper = require('./Helper');
+var Helper = require('./helper/Helper');
 var endpoint = require('./endpoints');
 
 function DocuSign(config) {
