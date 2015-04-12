@@ -19,7 +19,7 @@ function initializeRequest(url, method, body, config) {
   var options = {
     'method': method,
     'uri': url,
-    'body': body,
+    'body': JSON.stringify(body),
     'headers': {}
   };
 

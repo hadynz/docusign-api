@@ -29,12 +29,12 @@ DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, rec
       'clientUserId': '1001' // user-configurable
     }
   ];
-  var body = JSON.stringify({
+  var body = {
     'emailSubject': 'DocuSign API call - Embedded Sending Example',
     'templateId': templateId,
     'templateRoles': recipients,
     'status': 'sent'
-  });
+  };
 
   return this
     .login()
@@ -50,13 +50,13 @@ DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, rec
 
 DocuSign.prototype.getRecipientView = function (envelopeId) {
   var self = this;
-  var body = JSON.stringify({
+  var body = {
     'returnUrl': 'http://www.docusign.com/devcenter',
     'authenticationMethod': 'email',
     'email': 'abdodollar@gmail.com',
     'userName': 'abdodollar',
     'clientUserId': '1001'// must match clientUserId in step 2!
-  });
+  };
 
   return this
     .login()
