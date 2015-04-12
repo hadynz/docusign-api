@@ -51,7 +51,7 @@ describe('DocuSign', function () {
 
   describe('createEnvelopeFromTemplate', function () {
 
-    it('returns the correct envelopeId for a given templateId in the DocuSign sandbox', function (done) {
+    it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
       this.timeout(5000);
 
       var templateId = '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b';
@@ -65,6 +65,33 @@ describe('DocuSign', function () {
           done();
         })
         .catch(function (error) {
+          assert.fail('This test should never fail', error);
+        });
+    });
+
+  });
+
+  describe('getRecipientView', function () {
+
+    it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
+      this.timeout(10000);
+
+      var templateId = '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b';
+      var docuSign = new DocuSign(config);
+
+      docuSign
+        .createEnvelopeFromTemplate(templateId, 'abdodollar@gmail.com', 'Test User', 'Tenant')
+        .then(function(envelopeId){
+          return docuSign.getRecipientView(envelopeId);
+        })
+        .then(function (response) {
+          assert.isNotNull(response.url);
+          assert.isString(response.url);
+          assert.match(response.url, /Signing\/startinsession.aspx\?t\=/);
+          done();
+        })
+        .catch(function (error) {
+          console.log('error', error);
           assert.fail('This test should never fail', error);
         });
     });

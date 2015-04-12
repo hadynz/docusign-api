@@ -52,7 +52,7 @@ DocuSign.prototype.getRecipientView = function (envelopeId) {
     'returnUrl': 'http://www.docusign.com/devcenter',
     'authenticationMethod': 'email',
     'email': 'abdodollar@gmail.com',
-    'userName': 'abdodollar',
+    'userName': 'Test User',
     'clientUserId': '1001'// must match clientUserId in step 2!
   };
 
