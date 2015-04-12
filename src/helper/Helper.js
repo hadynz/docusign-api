@@ -28,4 +28,11 @@ Helper.prototype.get = function(url, body, method) {
   });
 };
 
+Helper.prototype.validateSchema = function() {
+  return new Promise(function(fulfill){
+    // TODO: validate data against a given schema
+    fulfill();
+  });
+};
+
 module.exports = Helper;

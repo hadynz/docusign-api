@@ -21,8 +21,11 @@ DocuSign.prototype.login = function () {
 DocuSign.prototype.createEnvelopeFromTemplate = function (envelopeRequest) {
   var self = this;
 
-  return this
-    .login()
+  return self.helper
+    .validateSchema(envelopeRequest)
+    .then(function(){
+      return self.login();
+    })
     .then(function (response) {
       var url = response.baseUrl + endpoint.createEnvelopeFromTemplate;
       return self.helper.get(url, envelopeRequest, 'POST');
@@ -35,8 +38,11 @@ DocuSign.prototype.createEnvelopeFromTemplate = function (envelopeRequest) {
 DocuSign.prototype.getRecipientView = function (envelopeId, recipientRequest) {
   var self = this;
 
-  return this
-    .login()
+  return self.helper
+    .validateSchema(recipientRequest)
+    .then(function(){
+      return self.login();
+    })
     .then(function (response) {
       var url = response.baseUrl + endpoint.getRecipientView(envelopeId);
       return self.helper.get(url, recipientRequest, 'POST');
