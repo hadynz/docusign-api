@@ -8,12 +8,7 @@ var endpoint = {
 
   getRecipientView: function (envelopeId) {
     return this.createEnvelopeFromTemplate + '/' + envelopeId + '/views/recipient';
-  },
-
-  getEnvelopeRecipientsIncludingTabs: function (envelopeId) {
-    return this.createEnvelopeFromTemplate + '/' + envelopeId + '/recipients?include_tabs=true';
   }
-
 };
 
 module.exports = endpoint;

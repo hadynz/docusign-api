@@ -21,18 +21,17 @@ DocuSign.prototype.login = function () {
 
 DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, recipientName, templateRoleName) {
   var self = this;
-  var recipients = [
-    {
-      'email': email,
-      'name': recipientName,
-      'roleName': templateRoleName,
-      'clientUserId': '1001' // user-configurable
-    }
-  ];
   var body = {
     'emailSubject': 'DocuSign API call - Embedded Sending Example',
     'templateId': templateId,
-    'templateRoles': recipients,
+    'templateRoles': [
+      {
+        'email': email,
+        'name': recipientName,
+        'roleName': templateRoleName,
+        'clientUserId': '1001' // user-configurable
+      }
+    ],
     'status': 'sent'
   };
 
@@ -45,7 +44,6 @@ DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, rec
     .then(function (response) {
       return response.envelopeId;
     });
-
 };
 
 DocuSign.prototype.getRecipientView = function (envelopeId) {
