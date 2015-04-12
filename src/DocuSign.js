@@ -2,7 +2,6 @@
 
 var schema = require('./schema');
 var Helper = require('./Helper');
-//var config   = require('./config');
 var endpoint = require('./endpoints');
 
 function DocuSign(config) {
@@ -19,48 +18,28 @@ DocuSign.prototype.login = function () {
     });
 };
 
-DocuSign.prototype.createEnvelopeFromTemplate = function (templateId, email, recipientName, templateRoleName) {
+DocuSign.prototype.createEnvelopeFromTemplate = function (envelopeRequest) {
   var self = this;
-  var body = {
-    'emailSubject': 'docusign-api Unit Test',
-    'templateId': templateId,
-    'templateRoles': [
-      {
-        'email': email,
-        'name': recipientName,
-        'roleName': templateRoleName,
-        'clientUserId': '1001' // user-configurable
-      }
-    ],
-    'status': 'sent'
-  };
 
   return this
     .login()
     .then(function (response) {
       var url = response.baseUrl + endpoint.createEnvelopeFromTemplate;
-      return self.helper.get(url, body, 'POST');
+      return self.helper.get(url, envelopeRequest, 'POST');
     })
     .then(function (response) {
       return response.envelopeId;
     });
 };
 
-DocuSign.prototype.getRecipientView = function (envelopeId) {
+DocuSign.prototype.getRecipientView = function (envelopeId, recipientRequest) {
   var self = this;
-  var body = {
-    'returnUrl': 'http://www.docusign.com/devcenter',
-    'authenticationMethod': 'email',
-    'email': 'abdodollar@gmail.com',
-    'userName': 'Test User',
-    'clientUserId': '1001'// must match clientUserId in step 2!
-  };
 
   return this
     .login()
     .then(function (response) {
       var url = response.baseUrl + endpoint.getRecipientView(envelopeId);
-      return self.helper.get(url, body, 'POST');
+      return self.helper.get(url, recipientRequest, 'POST');
     });
 };
 

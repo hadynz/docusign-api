@@ -51,14 +51,27 @@ describe('DocuSign', function () {
 
   describe('createEnvelopeFromTemplate', function () {
 
+    var envelopeRequest = {
+      'emailSubject': 'docusign-api Unit Test',
+      'templateId': '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
+      'templateRoles': [
+        {
+          'email': 'user@test.com',
+          'name': 'Test User',
+          'roleName': 'Tenant',
+          'clientUserId': '1001' // user-configurable
+        }
+      ],
+      'status': 'sent'
+    };
+
     it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
       this.timeout(5000);
 
-      var templateId = '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b';
       var docuSign = new DocuSign(config);
 
       docuSign
-        .createEnvelopeFromTemplate(templateId, 'user@test.com', 'Test User', 'Tenant')
+        .createEnvelopeFromTemplate(envelopeRequest)
         .then(function (envelopeId) {
           assert.isNotNull(envelopeId);
           assert.isString(envelopeId);
@@ -73,16 +86,37 @@ describe('DocuSign', function () {
 
   describe('getRecipientView', function () {
 
+    var signer = {
+      'email': 'user@test.com',
+      'name': 'Test User',
+      'roleName': 'Tenant',
+      'clientUserId': '1001'
+    };
+
+    var envelopeRequest = {
+      'emailSubject': 'docusign-api Unit Test',
+      'templateId': '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
+      'templateRoles': [signer],
+      'status': 'sent'
+    };
+
+    var recipientRequest = {
+      'returnUrl': 'http://www.docusign.com/devcenter',
+      'authenticationMethod': 'email',
+      'email': signer.email,
+      'userName': signer.name,
+      'clientUserId': signer.clientUserId
+    };
+
     it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
       this.timeout(10000);
 
-      var templateId = '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b';
       var docuSign = new DocuSign(config);
 
       docuSign
-        .createEnvelopeFromTemplate(templateId, 'abdodollar@gmail.com', 'Test User', 'Tenant')
+        .createEnvelopeFromTemplate(envelopeRequest)
         .then(function(envelopeId){
-          return docuSign.getRecipientView(envelopeId);
+          return docuSign.getRecipientView(envelopeId, recipientRequest);
         })
         .then(function (response) {
           assert.isNotNull(response.url);
