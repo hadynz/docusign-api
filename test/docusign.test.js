@@ -49,20 +49,20 @@ describe('DocuSign', function () {
 
   });
 
-  describe('createEnvelopeFromTemplate', function () {
+  describe('requestSignatureViaTemplate', function () {
 
     var envelopeRequest = {
-      'emailSubject': 'docusign-api Unit Test',
-      'templateId': '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
-      'templateRoles': [
+      emailSubject: 'docusign-api Unit Test',
+      templateId: '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
+      templateRoles: [
         {
-          'email': 'user@test.com',
-          'name': 'Test User',
-          'roleName': 'Tenant',
-          'clientUserId': '1001' // user-configurable
+          email: 'user@test.com',
+          name: 'Test User',
+          roleName: 'Tenant',
+          clientUserId: '1001' // user-configurable
         }
       ],
-      'status': 'sent'
+      status: 'sent'
     };
 
     it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
@@ -71,7 +71,7 @@ describe('DocuSign', function () {
       var docuSign = new DocuSign(config);
 
       docuSign
-        .createEnvelopeFromTemplate(envelopeRequest)
+        .requestSignatureViaTemplate(envelopeRequest)
         .then(function (envelopeId) {
           assert.isNotNull(envelopeId);
           assert.isString(envelopeId);
@@ -87,25 +87,41 @@ describe('DocuSign', function () {
   describe('getRecipientView', function () {
 
     var signer = {
-      'email': 'user@test.com',
-      'name': 'Test User',
-      'roleName': 'Tenant',
-      'clientUserId': '1001'
+      email: 'hadyos@gmail.com',
+      name: 'Hady Osman',
+      roleName: 'Tenant',
+      clientUserId: '1001'
     };
 
     var envelopeRequest = {
-      'emailSubject': 'docusign-api Unit Test',
-      'templateId': '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
-      'templateRoles': [signer],
-      'status': 'sent'
+      emailSubject: 'docusign-api Unit Test',
+      templateId: '5beae4a6-93e4-4bf5-a3b7-80547fad6b7b',
+      templateRoles: [
+        signer,
+        {
+          email: 'dina.gharbo@gmail.com',
+          name: 'Dina Gharbo',
+          roleName: 'Landlord',
+          clientUserId: '2001'
+        },
+        {
+          email: 'abdodollar@gmail.com',
+          name: 'Abdo Dollar',
+          roleName: 'Real Estate Agent'
+        }
+      ],
+      status: 'sent',
+      notification: {
+        useAccountDefaults: true
+      }
     };
 
     var recipientRequest = {
-      'returnUrl': 'http://www.docusign.com/devcenter',
-      'authenticationMethod': 'email',
-      'email': signer.email,
-      'userName': signer.name,
-      'clientUserId': signer.clientUserId
+      returnUrl: 'http://www.docusign.com/devcenter',
+      authenticationMethod: 'email',
+      email: signer.email,
+      userName: signer.name,
+      clientUserId: signer.clientUserId
     };
 
     it('returns an envelopeId string for a given templateId in the DocuSign sandbox', function (done) {
@@ -114,8 +130,8 @@ describe('DocuSign', function () {
       var docuSign = new DocuSign(config);
 
       docuSign
-        .createEnvelopeFromTemplate(envelopeRequest)
-        .then(function(envelopeId){
+        .requestSignatureViaTemplate(envelopeRequest)
+        .then(function (envelopeId) {
           return docuSign.getRecipientView(envelopeId, recipientRequest);
         })
         .then(function (response) {

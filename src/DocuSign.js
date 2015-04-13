@@ -18,7 +18,14 @@ DocuSign.prototype.login = function () {
     });
 };
 
-DocuSign.prototype.createEnvelopeFromTemplate = function (envelopeRequest) {
+/**
+ * Request a DocuSign signature via a pre-defined Template.
+ *
+ * @see {@link https://www.docusign.com/p/RESTAPIGuide/Content/REST%20API%20References/Send%20an%20Envelope%20from%20a%20Template.htm}
+ * @param {Object} envelopeRequest
+ * @returns {Promise}
+ */
+DocuSign.prototype.requestSignatureViaTemplate = function (envelopeRequest) {
   var self = this;
 
   return self.helper
