@@ -2,7 +2,7 @@
 
 var schema = require('validate');
 
-var docuSignConfig = schema({
+var docuSignConfigSchema = schema({
   email: {
     type: 'string',
     required: true
@@ -17,6 +17,37 @@ var docuSignConfig = schema({
   }
 });
 
+var envelopeRequestSchema = schema({
+  templateId: {
+    type: 'string',
+    required: true
+  },
+  status: {
+    type: 'string',
+    required: true
+  },
+  templateRoles: {
+    type: 'array'
+  }
+});
+
 module.exports = {
-  config: docuSignConfig
+  config: docuSignConfigSchema,
+  envelopeRequest: envelopeRequestSchema
 };
+
+
+/*
+'emailSubject': 'docusign-api Unit Test',
+  'templateId': templateId,
+  'templateRoles': [
+  {
+    'email': email,
+    'name': recipientName,
+    'roleName': templateRoleName,
+    'clientUserId': '1001' // user-configurable
+  }
+],
+  'status': 'sent'
+
+  */

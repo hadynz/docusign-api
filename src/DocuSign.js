@@ -23,14 +23,14 @@ DocuSign.prototype.login = function () {
  *
  * @see {@link https://www.docusign.com/p/RESTAPIGuide/Content/REST%20API%20References/Send%20an%20Envelope%20from%20a%20Template.htm}
  * @param {Object} envelopeRequest
- * @returns {Promise}
+ * @returns {Promise} Returns a promise that eventually returns ID of envelope that was created
  */
-DocuSign.prototype.requestSignatureViaTemplate = function (envelopeRequest) {
+DocuSign.prototype.requestSignature = function (envelopeRequest) {
   var self = this;
 
   return self.helper
     .validateSchema(envelopeRequest)
-    .then(function(){
+    .then(function () {
       return self.login();
     })
     .then(function (response) {
@@ -47,7 +47,7 @@ DocuSign.prototype.getRecipientView = function (envelopeId, recipientRequest) {
 
   return self.helper
     .validateSchema(recipientRequest)
-    .then(function(){
+    .then(function () {
       return self.login();
     })
     .then(function (response) {

@@ -9,7 +9,7 @@ function Helper(config) {
   this.config = config;
 }
 
-Helper.prototype.get = function(url, body, method) {
+Helper.prototype.get = function (url, body, method) {
   var self = this;
 
   return new Promise(function (fulfill, reject) {
@@ -28,8 +28,8 @@ Helper.prototype.get = function(url, body, method) {
   });
 };
 
-Helper.prototype.validateSchema = function() {
-  return new Promise(function(fulfill){
+Helper.prototype.validateSchema = function () {
+  return new Promise(function (fulfill) {
     // TODO: validate data against a given schema
     fulfill();
   });
