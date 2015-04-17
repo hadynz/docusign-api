@@ -1,15 +1,12 @@
 'use strict';
 
 var assert = require('chai').assert;
-var proxyquire = require('proxyquire');
 
-var fsStub = {
-  readFileSync: function () {
-    return '';
-  }
+var readFileStub = function () {
+  return '';
 };
 
-var addMultipartHeaders = proxyquire('../src/helper/addMultipartHeaders', {'fs': fsStub});
+var addMultipartHeaders = require('../src/helper/addMultipartHeaders')(readFileStub);
 
 describe('addMultipartHeaders', function () {
 
@@ -40,7 +37,7 @@ describe('addMultipartHeaders', function () {
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample.pdf"; documentId=1',
-          body: fsStub.readFileSync()
+          body: ''
         }
       ]
     };
@@ -69,17 +66,17 @@ describe('addMultipartHeaders', function () {
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample1.pdf"; documentId=1',
-          body: fsStub.readFileSync()
+          body: ''
         },
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample2.pdf"; documentId=2',
-          body: fsStub.readFileSync()
+          body: ''
         },
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample3.pdf"; documentId=3',
-          body: fsStub.readFileSync()
+          body: ''
         }
       ]
     };
@@ -122,7 +119,7 @@ describe('addMultipartHeaders', function () {
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample.pdf"; documentId=1',
-          body: fsStub.readFileSync()
+          body: ''
         }
       ]
     };
@@ -185,12 +182,12 @@ describe('addMultipartHeaders', function () {
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample.pdf"; documentId=1',
-          body: fsStub.readFileSync()
+          body: ''
         },
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample2.pdf"; documentId=2',
-          body: fsStub.readFileSync()
+          body: ''
         }
       ]
     };
@@ -255,12 +252,12 @@ describe('addMultipartHeaders', function () {
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample.pdf"; documentId=1; compositeTemplateId="1"',
-          body: fsStub.readFileSync()
+          body: ''
         },
         {
           'Content-Type': 'application/pdf',
           'Content-Disposition': 'file; filename="pdf-sample2.pdf"; documentId=2; compositeTemplateId="2"',
-          body: fsStub.readFileSync()
+          body: ''
         }
       ]
     };

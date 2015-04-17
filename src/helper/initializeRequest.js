@@ -1,8 +1,10 @@
 'use strict';
 
 var _ = require('lodash');
+var fs = require('fs');
+
 var addRequestHeaders = require('./addRequestHeaders');
-var addMultipartHeaders = require('./addMultipartHeaders');
+var addMultipartHeaders = require('./addMultipartHeaders')(fs.readFileSync);
 
 function initializeRequest(url, method, body, authConfig) {
   var options = {
