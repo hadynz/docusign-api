@@ -1,6 +1,6 @@
 'use strict';
 
-function addRequestHeaders(headers, config) {
+function addRequestHeaders(config) {
   // JSON formatted authentication header (XML format allowed as well)
   var dsAuthHeader = JSON.stringify({
     'Username': config.email,
@@ -9,7 +9,11 @@ function addRequestHeaders(headers, config) {
   });
 
   // DocuSign authorization header
-  headers['X-DocuSign-Authentication'] = dsAuthHeader;
+  return {
+    headers: {
+      'X-DocuSign-Authentication': dsAuthHeader
+    }
+  };
 }
 
 module.exports = addRequestHeaders;

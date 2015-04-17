@@ -1,19 +1,22 @@
 'use strict';
 
+var _ = require('lodash');
 var addRequestHeaders = require('./addRequestHeaders');
 var addMultipartHeaders = require('./addMultipartHeaders');
 
 function initializeRequest(url, method, body, authConfig) {
   var options = {
-    'method': method,
-    'uri': url,
-    'body': JSON.stringify(body),
-    'headers': {}
+    method: method,
+    uri: url,
+    body: JSON.stringify(body),
+    headers: {}
   };
 
-  addRequestHeaders(options.headers, authConfig);
+  var authRequest = addRequestHeaders(authConfig);
+  _.merge(options, authRequest);
 
-  addMultipartHeaders(options, body);
+  var multipartRequest = addMultipartHeaders(body);
+  _.merge(options, multipartRequest);
 
   return options;
 }
