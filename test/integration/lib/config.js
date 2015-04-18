@@ -16,5 +16,6 @@ nconf
 module.exports = {
   email: nconf.get('email'),
   password: nconf.get('password'),
-  integratorKey: nconf.get('key')
+  integratorKey: nconf.get('key'),
+  accountId: nconf.get('accountId')
 };
