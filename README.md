@@ -1,6 +1,4 @@
-# docusign-api
-
-[![Build Status](https://travis-ci.org/hadynz/docusign-api.svg)](https://travis-ci.org/hadynz/docusign-api)
+# docusign-api [![Build Status](https://travis-ci.org/hadynz/docusign-api.svg)](https://travis-ci.org/hadynz/docusign-api)
 
 DocuSign API for NodeJS.
 
@@ -11,6 +9,40 @@ npm install docusign-api
 ```
 
 ## Usage
+
+```js
+var DocuSign = require('docusign-api'),
+var config = {
+  email: '#EMAIL',
+  password: '#PASSWORD',
+  key: '#INTEGRATOR KEY'
+};
+
+// Then we instantiate a client with DocuSign auth tokens
+
+var docuSign = new DocuSign(config);
+```
+
+## DocuSign api
+
+You must have a valid DocuSign auth token (password and integrator key) for the following:
+
+#### Login to DocuSign (GET /login)
+
+```js
+var docuSign = new DocuSign(config);
+
+docuSign
+  .login()
+  .then(function(response){
+    console.log('API baseUrl', response.baseUrl);
+    console.log('DocuSign accountId', response.accountId);
+  });
+```
+
+#### Create an Envelope to request a signature  (POST /envelopes)
+
+#### Get Reciept View (POST /xxxx-xxx-xxxx/views/recipient)
 
 ## DocuSign Terminology
 
