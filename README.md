@@ -84,6 +84,25 @@ docuSign
   });
 ```
 
+## Testing
+
+### Unit Tests
+
+```bash
+npm test
+```
+
+### Integration Tests
+
+Integration tests will test the API end to end against a real DocuSign API endpoint. You will first 
+need to rename `config.dev.json.stub` to `config.dev.json` and updated with your DocuSign auth settings.
+
+To run integration tests:
+
+```bash
+grunt integration
+```
+
 ## License
 
 Copyright (c) 2015 Hady Osman   
