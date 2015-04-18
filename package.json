@@ -1,7 +1,7 @@
 {
   "name": "docusign-api",
   "version": "0.0.1",
-  "description": "DocuSign API for NodeJS",
+  "description": "Promise based DocuSign API for NodeJS",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
