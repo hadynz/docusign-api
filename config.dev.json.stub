@@ -1,0 +1,8 @@
+// Configure with your DocuSign account settings to run integration tests - `grunt integration`
+// Rename to `config.dev.json`
+{
+  "email": "#EMAIL",
+  "password": "#PASSWORD",
+  "key": "#INTEGRATOR KEY",
+  "accountId": "#DOCUSIGN ACCOUNT ID"
+}
