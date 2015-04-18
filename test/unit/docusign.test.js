@@ -75,7 +75,7 @@ describe('DocuSign', function () {
 
   describe('requestSignature', function () {
 
-    it('some test', function (done) {
+    it('will invoke a GET (login) and a POST (requestSignature) requests after each other', function (done) {
       stub.onFirstCall().returns(mockResponse.login);
       stub.onSecondCall().returns(mockResponse.envelope);
 
@@ -84,6 +84,7 @@ describe('DocuSign', function () {
         .requestSignature({})
         .then(function () {
           assert.lengthOf(actualRequests, 2);
+          assert.strictEqual(actualRequests[0].method, 'GET');
           assert.strictEqual(actualRequests[1].method, 'POST');
 
           done();
