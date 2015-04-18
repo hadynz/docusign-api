@@ -15,8 +15,8 @@ describe('requestSignature', function () {
      * and they can access the envelope through a URL token instead of a hyperlink in an email.
      */
     var signer = {
-      email: 'alwarnassy@gmail.com',
-      name: 'Mohamed Hussein',
+      email: 'hadyos@gmail.com',
+      name: 'Hady Osman',
       roleName: 'Tenant',
       clientUserId: '1001',
       requireIdLookup: true,
