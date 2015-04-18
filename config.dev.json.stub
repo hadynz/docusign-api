@@ -4,5 +4,20 @@
   "email": "#EMAIL",
   "password": "#PASSWORD",
   "key": "#INTEGRATOR KEY",
-  "accountId": "#DOCUSIGN ACCOUNT ID"
+  "accountId": "#DOCUSIGN ACCOUNT ID",
+  "user1": {
+      "name:": "User 1 Name",
+      "email": "user1@email.com",
+      "role": "Role 1"
+    },
+    "user2": {
+      "name:": "User 2 Name",
+      "email": "user2@email.com",
+      "role": "Role 2"
+    },
+    "user3": {
+      "name:": "User 3 Name",
+      "email": "user3@email.com",
+      "role": "Role 3"
+    }
 }

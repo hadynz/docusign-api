@@ -15,9 +15,9 @@ describe('requestSignature', function () {
      * and they can access the envelope through a URL token instead of a hyperlink in an email.
      */
     var signer = {
-      email: 'hadyos@gmail.com',
-      name: 'Hady Osman',
-      roleName: 'Tenant',
+      email: config.user1.email,
+      name: config.user1.name,
+      roleName: config.user1.role,
       clientUserId: '1001',
       requireIdLookup: true,
       IDCheckConfigurationName: 'SMS Auth $',
@@ -34,15 +34,15 @@ describe('requestSignature', function () {
       templateRoles: [
         signer,
         {
-          email: 'abdodollar@gmail.com',
-          name: 'Abdo Dollar',
-          roleName: 'Landlord'
+          email: config.user2.email,
+          name: config.user2.name,
+          roleName: config.user2.role
           //clientUserId: '2001'
         },
         {
-          email: 'hadyos@gmail.com',
-          name: 'Hady Osman',
-          roleName: 'Real Estate Agent'
+          email: config.user3.email,
+          name: config.user3.name,
+          roleName: config.user3.role
         }
       ],
       status: 'sent',
@@ -97,8 +97,8 @@ describe('requestSignature', function () {
       recipients: {
         signers: [
           {
-            email: 'abdodollar@gmail.com',
-            name: 'Abdo Dollar',
+            email: config.user2.email,
+            name: config.user2.name,
             recipientId: 1,
             tabs: {
               signHereTabs: [
@@ -150,8 +150,8 @@ describe('requestSignature', function () {
               recipients: {
                 signers: [
                   {
-                    email: 'hadyos@gmail.com',
-                    name: 'Hady Osman',
+                    email: config.user1.email,
+                    name: config.user1.name,
                     recipientId: '1',
                     tabs: {
                       signHereTabs: [
