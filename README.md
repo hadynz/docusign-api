@@ -1,6 +1,6 @@
 # docusign-api [![Build Status](https://travis-ci.org/hadynz/docusign-api.svg)](https://travis-ci.org/hadynz/docusign-api)
 
-DocuSign API for NodeJS.
+Promise based DocuSign API for NodeJS.
 
 ## Installation
 
@@ -63,7 +63,26 @@ docuSign
   });
 ```
 
-#### Get Reciept View (POST /xxxx-xxx-xxxx/views/recipient)
+#### Get Recipient View for embedded signing (POST /xxxx-xxx-xxxx/views/recipient)
+
+```js
+var docuSign = new DocuSign(config);
+
+var envelopeId = 'xxxx-xxx-xxxx';
+
+var recipientRequest = {
+  returnUrl: 'http://www.docusign.com/devcenter',
+  authenticationMethod: 'email',
+  userName: 'Sally Doe',
+  email: 'sally.doe@email.com'
+};
+
+docuSign
+  .getRecipientView(envelopeId, recipientRequest)
+  .then(function(response){
+    console.log('Embedded signing workflow Url', response.url);
+  });
+```
 
 ## DocuSign Terminology
 
