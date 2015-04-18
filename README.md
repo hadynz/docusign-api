@@ -27,7 +27,7 @@ var docuSign = new DocuSign(config);
 
 You must have a valid DocuSign auth token (password and integrator key) for the following:
 
-#### Login to DocuSign (GET /login)
+#### Login to DocuSign (GET /login_information)
 
 ```js
 var docuSign = new DocuSign(config);
@@ -41,6 +41,27 @@ docuSign
 ```
 
 #### Create an Envelope to request a signature  (POST /envelopes)
+
+```js
+var docuSign = new DocuSign(config);
+
+var envelopeRequest = {
+  emailSubject: 'API Call that uses a Template',
+  templateId: 'xxxxx-xxx-xxxx-xxxx-xxxxxxxxxx',
+  templateRoles: [{
+    roleName: 'Role'
+    name: 'Sally Doe',
+    email: 'sally.doe@email.com'
+  }],
+  status: 'sent'
+};
+
+docuSign
+  .requestSignature(envelopeRequest)
+  .then(function(envelopeId){
+    console.log('Envelope ID', envelopeId);
+  });
+```
 
 #### Get Reciept View (POST /xxxx-xxx-xxxx/views/recipient)
 
