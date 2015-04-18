@@ -6,7 +6,7 @@ var readFileStub = function () {
   return '';
 };
 
-var addMultipartHeaders = require('../src/helper/addMultipartHeaders')(readFileStub);
+var addMultipartHeaders = require('../../src/helper/addMultipartHeaders')(readFileStub);
 
 describe('addMultipartHeaders', function () {
 

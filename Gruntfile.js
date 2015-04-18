@@ -6,11 +6,17 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     mochaTest: {
-      test: {
+      unit: {
         options: {
           reporter: 'spec'
         },
-        src: './test/**/*.js'
+        src: './test/unit/**/*.js'
+      },
+      integration: {
+        options: {
+          reporter: 'spec'
+        },
+        src: './test/integration/**/*.js'
       }
     },
     jshint: {
@@ -19,6 +25,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('test', ['lint', 'mochaTest']);
+  grunt.registerTask('integration', ['mochaTest:integration']);
+  grunt.registerTask('test', ['lint', 'mochaTest:unit']);
   grunt.registerTask('lint', ['jshint']);
 };

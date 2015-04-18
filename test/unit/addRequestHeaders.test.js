@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert;
-var addRequestHeaders = require('../src/helper/addRequestHeaders');
+var addRequestHeaders = require('../../src/helper/addRequestHeaders');
 
 describe('addRequestHeaders', function () {
 

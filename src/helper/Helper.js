@@ -1,12 +1,12 @@
 'use strict';
 
-var request = require('request');
 var Promise = require('promise');
 
 var initializeRequest = require('./initializeRequest');
 
-function Helper(config) {
+function Helper(config, request) {
   this.config = config;
+  this.request = request;
 }
 
 Helper.prototype.get = function (url, body, method) {
@@ -15,7 +15,7 @@ Helper.prototype.get = function (url, body, method) {
   return new Promise(function (fulfill, reject) {
     var requestParams = initializeRequest(url, method, body, self.config);
 
-    request(requestParams, function (error, response, body) {
+    self.request(requestParams, function (error, response, body) {
       var parsedBody = JSON.parse(body);
 
       if (response.statusCode !== 200 && response.statusCode !== 201) {

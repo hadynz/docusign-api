@@ -1,13 +1,14 @@
 'use strict';
 
 var schema = require('./schema');
-var Helper = require('./helper/Helper');
 var endpoint = require('./endpoints');
+var request = require('request');
+var Helper = require('./helper/Helper');
 
-function DocuSign(config) {
+function DocuSign(config, req) {
   schema.config.assert(config);
 
-  this.helper = new Helper(config);
+  this.helper = new Helper(config, req || request);
 }
 
 DocuSign.prototype.login = function () {
