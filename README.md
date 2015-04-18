@@ -95,7 +95,7 @@ npm test
 ### Integration Tests
 
 Integration tests will test the API end to end against a real DocuSign API endpoint. You will first 
-need to rename `config.dev.json.stub` to `config.dev.json` and updated with your DocuSign auth settings.
+need to rename [`config.dev.json.stub`][stub] to `config.dev.json` and update with your DocuSign auth settings.
 
 To run integration tests:
 
@@ -109,3 +109,4 @@ Copyright (c) 2015 Hady Osman
 Licensed under the [MIT][license] license.
 
 [license]: https://github.com/hadynz/docusign-api/blob/master/README.md
+[stub]: https://github.com/hadynz/docusign-api/blob/master/config.dev.json.stub
